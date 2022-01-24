@@ -75,10 +75,6 @@ DROP TABLE IF EXISTS casts;
 -- Create new tables, according to your domain model
 -- TODO!
 
--- Insert data into your database that reflects the sample data shown above
--- Use hard-coded foreign key IDs when necessary
--- TODO!
-
 CREATE TABLE movies (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 title TEXT,
@@ -94,27 +90,33 @@ name TEXT,
 role TEXT
 );
 
-INSERT INTO movies (title, year, mpaa_rating, director) 
-VALUES ("Batman Begins", "2005", "PG-13", "Christopher Nolan"),
+-- Insert data into your database that reflects the sample data shown above
+-- Use hard-coded foreign key IDs when necessary
+-- TODO!
+
+INSERT INTO movies (title, year, mpaa_rating, director)
+VALUES 
+("Batman Begins", "2005", "PG-13", "Christopher Nolan"),
 ("The Dark Knight", "2008", "PG-13", "Christopher Nolan"),
 ("The Dark Knight Rises", "2012", "PG-13", "Christopher Nolan");
 
 INSERT INTO casts (id_movies, name, role) 
-VALUES ("1","Christian Bale","Bruce Wayne"),
-VALUES ("1","Michael Caine","Alfred"),
-VALUES ("1","Liam Neeson","Ra's Al Ghul"),
-VALUES ("1","Katie Holmes","Rachel Dawes"),
-VALUES ("1","Gary Oldman","Commissioner Gordon"),
-VALUES ("2","Christian Bale","Bruce Wayne"),
-VALUES ("2","Heath Ledger","Joker"),
-VALUES ("2","Aaron Eckhart","Harvey Dent"),
-VALUES ("2","Michael Caine","Alfred"),
-VALUES ("2","Maggie Gyllenhaal","Rachel Dawes"),
-VALUES ("3","Christian Bale","Bruce Wayne")
-VALUES ("3","Gary Oldman","Commissioner Gordon")
-VALUES ("3","Tom Hardy","Bane")
-VALUES ("3","Joseph Gordon-Levitt","John Blake")
-VALUES ("3","Anne Hathaway","Selina Kyle");
+VALUES 
+("1","Christian Bale","Bruce Wayne"),
+("1","Michael Caine","Alfred"),
+("1","Liam Neeson","Ra's Al Ghul"),
+("1","Katie Holmes","Rachel Dawes"),
+("1","Gary Oldman","Commissioner Gordon"),
+("2","Christian Bale","Bruce Wayne"),
+("2","Heath Ledger","Joker"),
+("2","Aaron Eckhart","Harvey Dent"),
+("2","Michael Caine","Alfred"),
+("2","Maggie Gyllenhaal","Rachel Dawes"),
+("3","Christian Bale","Bruce Wayne"),
+("3","Gary Oldman","Commissioner Gordon"),
+("3","Tom Hardy","Bane"),
+("3","Joseph Gordon-Levitt","John Blake"),
+("3","Anne Hathaway","Selina Kyle");
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -122,6 +124,8 @@ VALUES ("3","Anne Hathaway","Selina Kyle");
 .print ""
 
 -- The SQL statement for the movies output
+SELECT title, year, mpaa_rating, director FROM movies;
+
 -- TODO!
 
 -- Prints a header for the cast output
@@ -133,3 +137,7 @@ VALUES ("3","Anne Hathaway","Selina Kyle");
 
 -- The SQL statement for the cast output
 -- TODO!
+
+SELECT movies.title, casts.name, casts.role
+FROM casts INNER JOIN movies ON movies.id = casts.id_movies;
+
